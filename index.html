@@ -1,0 +1,892 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Landing Page — CSS</title>
+    <link rel="stylesheet" href="styles.css"> <!-- Link to the CSS file -->
+
+    <!-- Link Swiper's CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+  <!-- Additional CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
+
+    <style>
+        /* Import Google Fonts */
+        @import url('https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Frank+Ruhl+Libre:wght@300..900&family=Orbitron:wght@400..900&family=PT+Serif:ital,wght@0,400;0,700;1,400;1,700&family=Tiny5&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Abril+Fatface&family=DynaPuff:wght@400..700&family=Frank+Ruhl+Libre:wght@300..900&family=Orbitron:wght@400..900&family=PT+Serif:ital,wght@0,400;0,700;1,400;1,700&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Tiny5&display=swap');
+        /* styles.css */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: "Poppins", sans-serif;
+            color: #4a4a4a;
+        }
+
+        .header {
+            background-color: #ffffff;
+            border-bottom: 1px solid #e5e5e5;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            color: #1f2937;
+            /* Gray 900 */
+            font-family: monospace;
+            /* Font for the logo */
+            font-size: 1.5rem;
+            /* Size of the logo text */
+        }
+
+        .logo-logo {
+            background-color: #4338ca;
+            border-radius: 5px;
+            color: #ffffff;
+            padding-right: 4px;
+            padding-left: 4px;
+        }
+
+        .logo-text {
+            margin-left: 10px;
+            font-family: 'Poppins', serif;
+            /* Font for the webpage name */
+            font-size: 1.5rem;
+            /* Size of the webpage name */
+            color: #1f2937;
+            font-weight: bolder;
+            /* Gray 900 */
+        }
+
+        .nav {
+            display: flex;
+            /* Keep nav links in a row */
+            transition: max-height 0.3s ease;
+            /* Smooth transition for height */
+            overflow: hidden;
+            /* Hide overflow for animation effect */
+            max-height: 0;
+            /* Start with nav hidden */
+        }
+
+        .nav-link {
+            margin-right: 20px;
+            color: #4a4a4a;
+            /* Gray */
+            text-decoration: none;
+            font-weight: bold;
+            /* Make nav links bold */
+        }
+
+        /* Hide the nav links on mobile */
+        @media (max-width: 640px) {
+            .nav {
+                display: flex;
+                /* Flex display for mobile */
+                flex-direction: column;
+                /* Stack nav items vertically */
+                position: absolute;
+                /* Positioning for dropdown */
+                top: 60px;
+                /* Position below the header */
+                right: 0;
+                background-color: white;
+                /* Background for dropdown */
+                width: 100%;
+                /* Full width */
+                border-top: 1px solid #e5e5e5;
+                /* Border for dropdown */
+                max-height: 0;
+                /* Start hidden */
+                transition: max-height 0.3s ease;
+                /* Smooth transition for height */
+            }
+
+            .nav-link {
+                margin: 10px 0;
+                /* Margin for links in dropdown */
+                padding: 10px;
+                /* Padding for clickable area */
+                margin: 0 auto;
+            }
+
+            .navbar-toggler {
+                display: block;
+                /* Show the toggler on mobile */
+                background: none;
+                /* No background */
+                border: none;
+                /* No border */
+                font-size: 24px;
+                /* Size for toggler */
+                cursor: pointer;
+                /* Pointer cursor */
+            }
+        }
+
+        /* Show nav links when toggled */
+        .nav.show {
+            max-height: 300px;
+            /* Adjust based on the number of links */
+        }
+
+        /* Hide the toggler on desktop */
+        @media (min-width: 641px) {
+            .navbar-toggler {
+                display: none;
+                /* Hide toggler on desktop */
+            }
+
+            .nav {
+                max-height: none;
+                /* Keep nav displayed normally on desktop */
+            }
+        }
+
+        .cta-button {
+            background-color: #e5e7eb;
+            /* Gray 200 */
+            border: none;
+            padding: 8px 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+        }
+
+        .cta-button:hover {
+            background-color: #d1d5db;
+            /* Gray 300 */
+        }
+
+        .hero {
+            padding: 60px 0;
+            display: flex;
+            align-items: center;
+            font-family: "Poppins", sans-serif;
+        }
+
+        .hero-container {
+            display: flex;
+            flex-direction: row;
+        }
+
+        .hero-text {
+            flex: 1;
+            text-align: left;
+            margin-right: 20px;
+        }
+
+        .hero-title {
+            font-size: 2rem;
+            margin-bottom: 20px;
+            color: #1f2937;
+            /* Gray 900 */
+        }
+
+        .hero-description {
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+
+        .hero-buttons {
+            display: flex;
+        }
+
+        .button-primary {
+            background-color: #4f46e5;
+            /* Indigo 500 */
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-right: 10px;
+        }
+
+        .button-primary:hover {
+            background-color: #4338ca;
+            /* Indigo 600 */
+        }
+
+        .button-secondary {
+            background-color: #e5e7eb;
+            /* Gray 200 */
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .button-secondary:hover {
+            background-color: #d1d5db;
+            /* Gray 300 */
+        }
+
+        .hero-image {
+            flex: 1;
+        }
+
+        @media (max-width: 640px) {
+
+            /* This targets devices with a max width of 640px (mobile) */
+            .hero {
+                flex-direction: column;
+                /* Stack the elements vertically */
+                align-items: center;
+                /* Center align the contents */
+                text-align: center;
+                /* Center the text */
+            }
+
+            .hero-text {
+                margin-right: 0;
+                /* Remove margin on mobile view */
+                margin-bottom: 20px;
+                /* Add some spacing below the text */
+                padding: 0 20px;
+                /* Optional: add horizontal padding for better spacing */
+            }
+
+            .hero-image {
+                display: none;
+                /* Hide the hero image */
+            }
+        }
+
+        .image {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+        }
+
+        .slider-section {
+            padding: 60px 0;
+            border-top: 1px solid #e5e5e5;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .section-subtitle {
+            font-size: 0.75rem;
+            color: #6366f1;
+            /* Indigo 500 */
+        }
+
+        .section-title {
+            font-size: 2rem;
+            color: #1f2937;
+            /* Gray 900 */
+        }
+
+        .slider-container {
+            display: flex;
+            justify-content: center;
+        }
+
+        .slide {
+            margin: 0 10px;
+        }
+
+        .card {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .card-header {
+            position: relative;
+        }
+
+        .card-background {
+            height: 150px;
+            background-color: #e0f2fe;
+            /* Light Blue 100 */
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+        }
+
+        .card-icon {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+        }
+
+        .icon-background {
+            background-color: #4f46e5;
+            /* Indigo 500 */
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .card-content {
+            padding: 20px;
+        }
+
+        .card-title {
+            font-size: 1.25rem;
+            margin-bottom: 10px;
+        }
+
+        .card-description {
+            color: #4b5563;
+            /* Gray 600 */
+            margin-bottom: 15px;
+        }
+
+        .card-link {
+            color: #4f46e5;
+            /* Indigo 500 */
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+        }
+
+        .card-link:hover {
+            color: #4338ca;
+            /* Indigo 600 */
+        }
+
+
+        .team-section {
+            color: #4a4a4a;
+            /* text-gray-700 */
+            border-top: 1px solid #e5e5e5;
+            /* border-gray-200 */
+            padding: 60px 0;
+            /* Vertical padding for section */
+            margin: 0 auto;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .team-section .container {
+            max-width: 1200px;
+            /* Similar to Tailwind's max-w-4xl */
+            margin: 0 auto;
+            /* Center the container */
+            padding: 0 20px;
+            /* Horizontal padding */
+        }
+
+        .team-section .header {
+            text-align: center;
+            /* Center text */
+            margin-bottom: 40px;
+            /* Margin below header */
+        }
+
+        .team-section .title {
+            font-size: 2rem;
+            /* Tailwind's text-2xl */
+            font-weight: 500;
+            /* Tailwind's font-medium */
+            color: #1f2937;
+            /* text-gray-900 */
+        }
+
+        .team-section .subtitle {
+            max-width: 66.67%;
+            /* Similar to lg:w-2/3 */
+            margin: 0 auto;
+            /* Center the subtitle */
+            line-height: 1.5;
+            /* Leading-relaxed */
+            font-size: 1rem;
+            /* Tailwind's text-base */
+        }
+
+        .team-section .team-grid {
+            display: flex;
+            flex-wrap: wrap;
+            /* Allow wrapping */
+            justify-content: center;
+            /* Center items in the grid */
+            margin: 0 auto;
+            /* Center the grid */
+        }
+
+        .team-section .team-member {
+            padding: 10px;
+            /* Padding for spacing */
+            width: 100%;
+            /* Full width on small screens */
+            max-width: 400px;
+            /* Optional max-width for each card */
+            box-sizing: border-box;
+            /* Include padding and border in width */
+        }
+
+        .team-section .card {
+            display: flex;
+            align-items: center;
+            /* Align items vertically */
+            border: 1px solid #e5e5e5;
+            /* Border color */
+            padding: 16px;
+            /* Padding for card content */
+            border-radius: 8px;
+            /* Rounded corners */
+            background-color: #ffffff;
+            /* Background color */
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            /* Subtle shadow */
+            transition: transform 0.3s;
+            /* Smooth transition */
+        }
+
+        .team-section .card:hover {
+            transform: translateY(-5px);
+            /* Lift effect on hover */
+        }
+
+        .team-section .photo {
+            border-radius: 50%;
+            /* Circle shape for photos */
+            width: 100px;
+            /* Width for photo */
+            height: 100px;
+            /* Height for photo */
+            object-fit: cover;
+            /* Cover to maintain aspect ratio */
+            margin-right: 16px;
+            /* Space between photo and text */
+        }
+
+        .team-section .team-member-name {
+            font-size: 1.25rem;
+            /* Name font size */
+            font-weight: 600;
+            /* Bold name */
+            color: #1f2937;
+            /* Darker text color */
+        }
+
+        .team-section .team-member-title {
+            font-size: 1rem;
+            /* Title font size */
+            color: #6b7280;
+            /* Gray 600 */
+            margin-bottom: 8px;
+            /* Space below title */
+        }
+
+        .team-section .team-member-description {
+            font-size: 0.875rem;
+            /* Description font size */
+            color: #4b5563;
+            /* Gray 700 */
+            line-height: 1.5;
+            /* Line height for readability */
+        }
+
+        @media (min-width: 640px) {
+            .team-section .team-member {
+                width: calc(50% - 20px);
+                /* Two cards per row on small screens */
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .team-section .team-member {
+                width: calc(33.33% - 20px);
+                /* Three cards per row on larger screens */
+            }
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 40px 0;
+            background-color: #f8fafc;
+            /* Gray 100 */
+            color: #4a4a4a;
+            /* Gray */
+        }
+
+        .footer a {
+            color: #4f46e5;
+            /* Indigo 500 */
+            text-decoration: none;
+        }
+
+        .footer a:hover {
+            text-decoration: underline;
+        }
+
+/* 
+        ===================================================================================
+        =================================================================================== */
+
+
+    /* Swiper Styles */
+    .exp-slider {
+      width: 100%;
+      padding-top: 50px;
+      padding-bottom: 50px; /* Added bottom padding for spacing */
+      position: relative; /* Relative positioning for absolute children */
+    }
+
+    .exp-slider .swiper {
+      padding: 40px; /* Added padding to ensure space for pagination */
+    }
+
+    .exp-slider .swiper-slide {
+      display: flex;
+      justify-content: center;
+      opacity: 0.7; /* Slight transparency for inactive slides */
+      transition: opacity 0.3s ease; /* Smooth transition for opacity */
+    }
+
+    .exp-slider .swiper-slide-active {
+      opacity: 1; /* Fully opaque for active slide */
+    }
+
+    /* Card Styles */
+    .exp-slider .card {
+      background-color: #FFF;
+      box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.05), 0 20px 50px 0 rgba(0, 0, 0, 0.1);
+      border-radius: 15px;
+      overflow: hidden;
+      padding: 1rem; /* Reduced padding for a modern look */
+      max-width: 350px; /* Standard UI appearance for desktop */
+      width: 100%; /* Ensure cards take full width of their container */
+      transition: 0.15s ease-in;
+    }
+
+    /* Mobile View Adjustments */
+    @media (max-width: 768px) {
+      /* Adjust based on your mobile breakpoint */
+      .exp-slider .card {
+        max-width: 90%; /* Allow cards to be wider on mobile */
+        padding: 1rem; /* Adjust padding as needed */
+      }
+    }
+
+    .exp-slider .card:hover {
+      box-shadow: 0 0 0 2px #136cbf, 0 10px 60px 0 rgba(0, 0, 0, 0.1);
+      transform: translateY(-5px);
+    }
+
+    .exp-slider .card-image {
+      border-radius: 10px;
+      overflow: hidden;
+      width: 100%; /* Ensure it takes full width */
+      height: 200px; /* Fixed height for consistent card size */
+    }
+
+    .exp-slider .card-image img {
+      width: 100%; /* Ensure image takes full width */
+      height: 100%; /* Ensure image takes full height */
+      object-fit: cover; /* Ensures the image covers the container */
+    }
+
+    .exp-slider .card-header {
+      margin-top: 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .exp-slider .card-header a {
+      font-weight: 600;
+      font-size: 1.375rem;
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .exp-slider .card-footer {
+      margin-top: 1.25rem;
+      border-top: 1px solid #ddd;
+      padding-top: 1.25rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between; /* This allows space between items */
+      flex-wrap: wrap;
+      color: #787878;
+    }
+
+    .exp-slider .explore-button {
+      display: inline-block; /* Ensures the link behaves like a button */
+      border: none; /* Remove border */
+      background-color: #1667be; /* Match card theme color */
+      border-radius: 20px; /* Rounded shape */
+      padding: 0.5rem 1rem; /* Padding for button */
+      color: #FFF; /* Text color */
+      font-weight: 600; /* Bold text */
+      font-size: 1rem; /* Adjust font size */
+      cursor: pointer; /* Pointer cursor */
+      transition: background-color 0.3s ease; /* Smooth transition */
+      text-decoration: none; /* Remove underline */
+      text-align: center; /* Center text */
+    }
+
+    .exp-slider .explore-button:hover {
+      background-color: #205ac7; /* Darken on hover */
+    }
+
+    /* Pagination Styles */
+    .exp-slider .swiper-pagination {
+      position: absolute; /* Make pagination absolute */
+      bottom: 10px; /* Position it at the bottom */
+      left: 50%;
+      transform: translateX(-50%); /* Center horizontally */
+      z-index: 10; /* Ensure it's above other elements */
+    }
+
+    .exp-slider .swiper-pagination-bullet {
+      background: rgba(0, 0, 0, 0.3); /* Bullet color */
+      width: 10px; /* Bullet width */
+      height: 10px; /* Bullet height */
+      opacity: 1; /* Ensure opacity */
+      margin: 0 5px; /* Spacing between bullets */
+      border-radius: 50%; /* Rounded bullets */
+      transition: background 0.3s ease; /* Smooth transition for hover */
+    }
+
+    .exp-slider .swiper-pagination-bullet-active {
+      background: #1667be; /* Active bullet color */
+    }
+
+    </style>
+</head>
+
+<body>
+    <header class="header">
+        <div class="container">
+            <a class="logo" href="https://tailblocks.cc" target="_blank">
+                <span class="logo-logo">01</span>
+                <span class="logo-text">Zerone</span>
+            </a>
+            <button class="navbar-toggler" aria-expanded="false" aria-label="Toggle navigation">
+                &#9776; <!-- Hamburger icon -->
+            </button>
+            <nav class="nav">
+                <a class="nav-link" href="#home">Home</a>
+                <a class="nav-link" href="#cards">Expiriments</a>
+                <a class="nav-link" href="#about">About</a>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero" id="home">
+        <div class="container hero-container">
+            <div class="hero-text">
+                <h1 class="hero-title"><span style="font-weight: 600;">Build Your Circuits <br class="hidden-lg">Faster!</span></h1>
+                <p class="hero-description">Unlock your creativity and efficiency in circuit design by exploring our
+                    Digital Lab webpage! Dive into a treasure trove of exciting experiments that will elevate your
+                    skills. This website is your one-stop resource for everything you need to document your findings and
+                    insights in the Digital Lab record.</p>
+                <div class="hero-buttons">
+                    <button class="button-primary" onclick="window.location.href='#cards'">Let's Explore</button>
+                    <!-- <button class="button-secondary">Learn More</button> -->
+                </div>
+            </div>
+            <div class="hero-image">
+                <img src="https://corporate.skroutz.gr/wp-content/uploads/science-1-600x400.png" alt="Hero Image" class="image">
+            </div>
+        </div>
+    </section>
+
+    <section class="exp-slider" id="cards">
+        <div class="team-section header" style="text-align: center;">
+            <h2 class="title">Explore</h2>
+            <p class="subtitle" style="text-align: center;">Explore these Expiriments</p>
+        </div>
+        <div class="swiper mySwiper">
+          <div class="swiper-wrapper">
+    
+            <!-- Card Slide 1 -->
+            <div class="swiper-slide">
+              <article class="card">
+                <figure class="card-image">
+                    <img src="./eg0.jpeg" alt="ARENA-101 Placeholder Image">
+                </figure>
+                <div class="card-header">
+                  <!-- <a href="#">DIGITAL LAB PLAYGROUND</a> -->
+                </div>
+                <div class="card-footer">
+                  <div>Nov 28, 2024</div>
+                  <a href="./digital_arena.html" class="explore-button">Explore</a> <!-- Link instead of button -->
+                </div>
+              </article>
+            </div>
+    
+            <!-- Card Slide 2 -->
+            <div class="swiper-slide">
+              <article class="card">
+                <figure class="card-image">
+                  <img src="./eg2.jpeg" alt="EXP-1">
+                </figure>
+                <div class="card-header">
+                  <!-- <a href="#">REALIZATION OF FUNCTIONS BASIC GATES</a> -->
+                </div>
+                <div class="card-footer">
+                  <div>Nov 29, 2024</div>
+                  <a href="./exp1.html" class="explore-button">Explore</a> <!-- Link instead of button -->
+                </div>
+              </article>
+            </div>
+    
+            <!-- Card Slide 3 -->
+            <div class="swiper-slide">
+              <article class="card">
+                <figure class="card-image">
+                    <img src="./eg3.jpeg" alt="EXP-2">
+                </figure>
+                <div class="card-header">
+                  <!-- <a href="#">HALF AND FULL ADDER</a> -->
+                </div>
+                <div class="card-footer">
+                  <div>Jul 26, 2019</div>
+                  <a href="./exp2.html" class="explore-button">Explore</a> <!-- Link instead of button -->
+                </div>
+              </article>
+            </div>
+    
+            <!-- Card Slide 4 -->
+            <div class="swiper-slide">
+              <article class="card">
+                <figure class="card-image">
+                    <img src="./eg4.jpeg" alt="EXP-3">
+                </figure>
+                <div class="card-header">
+                  <!-- <a href="#">Basic gates and flip flop</a> -->
+                </div>
+                <div class="card-footer">
+                  <div>Jul 26, 2019</div>
+                  <a href="./exp3.html" class="explore-button">Explore</a> <!-- Link instead of button -->
+                </div>
+              </article>
+            </div>
+    
+          </div>
+          <div class="swiper-pagination"></div>
+        </div>
+      </section>
+
+    <section class="team-section" id="about">
+        <div class="team-section header" style="text-align: center;">
+            <h2 class="title">Meet Our Team</h2>
+            <p class="subtitle" style="text-align: center;">Our team is comprised of experienced professionals who are passionate about their work.</p>
+        </div>
+        <div class="container team-grid">
+            <div class="team-member">
+                <div class="card">
+                    <img src="https://via.placeholder.com/100" alt="Team Member" class="photo">
+                    <div class="card-content">
+                        <h3 class="team-member-name">Muhammed Aman</h3>
+                        <p class="team-member-title">Assistant</p>
+                    </div>
+                </div>
+            </div>
+            <div class="team-member">
+                <div class="card">
+                    <img src="https://via.placeholder.com/100" alt="Team Member" class="photo">
+                    <div class="card-content">
+                        <h3 class="team-member-name">Liya Fathima</h3>
+                        <p class="team-member-title">Leader</p>
+                    </div>
+                </div>
+            </div>
+            <div class="team-member">
+                <div class="card">
+                    <img src="https://via.placeholder.com/100" alt="Team Member" class="photo">
+                    <div class="card-content">
+                        <h3 class="team-member-name">Shreya</h3>
+                        <p class="team-member-title">Assistant</p>
+                    </div>
+                </div>
+            </div>
+            <div class="team-member">
+                <div class="card">
+                    <img src="https://via.placeholder.com/100" alt="Team Member" class="photo">
+                    <div class="card-content">
+                        <h3 class="team-member-name">Saleem Malik</h3>
+                        <p class="team-member-title">Assistant</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+
+
+
+    <footer class="footer">
+        <p>&copy; 2024 ZerOne. All rights reserved.</p>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const toggler = document.querySelector('.navbar-toggler');
+            const nav = document.querySelector('.nav');
+
+            toggler.addEventListener('click', function () {
+                nav.classList.toggle('show'); // Toggle the 'show' class
+                const expanded = this.getAttribute('aria-expanded') === 'true' || false;
+                this.setAttribute('aria-expanded', !expanded); // Update the aria attribute
+            });
+        });
+    </script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+<!-- Initialize Swiper -->
+<script>
+  var swiper = new Swiper(".mySwiper", {
+    effect: "coverflow",
+    grabCursor: true,
+    centeredSlides: true,
+    slidesPerView: 1, // Default to 1 slide per view
+    coverflowEffect: {
+      rotate: 50,
+      stretch: 0,
+      depth: 100,
+      modifier: 1,
+      slideShadows: false,
+    },
+    pagination: {
+      el: ".swiper-pagination",
+    },
+    breakpoints: {
+      // Define breakpoints for responsiveness
+      768: {
+        slidesPerView: 2.5, // Show 2.5 slides on desktop
+      },
+    },
+  });
+</script>
+</body>
+
+</html>
